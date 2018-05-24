@@ -14,14 +14,14 @@ $(function () {
                 expect(allFeeds[i].url).toBeDefined();
                 expect(allFeeds[i].url.length).not.toBe(0);
             }
-        })
+        });
 
         it('should have valid names', function () {
             for (var i = 0, len = allFeeds.length; i < len; i++) {
                 expect(allFeeds[i].name).toBeDefined();
                 expect(allFeeds[i].name.length).not.toBe(0);
             }
-        })
+        });
     });
 
     describe('The menu', function () {
@@ -42,7 +42,7 @@ $(function () {
             loadFeed(0);
             // waits two seconds to allow api time to act
             setTimeout(done, 2000);
-        })
+        });
         it('has entries present after loadFeed', function (done) {
             // search for any articles with the length class inside of the .feed element
             var result = false;
@@ -52,7 +52,7 @@ $(function () {
                     result = true;
                     break;
                 }
-            }
+            };
             expect(result).toBe(true);
             done();
         });
@@ -66,7 +66,7 @@ $(function () {
         beforeEach(function (done) {
             loadFeed(0);
             setTimeout(done, 2000);
-        })
+        });
         it('successfully load initial feed for comparison', function (done) {
             articlesOriginal = $('.feed').find('article');
             expect(articlesOriginal).toBeDefined();
