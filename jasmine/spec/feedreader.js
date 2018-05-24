@@ -43,8 +43,8 @@ $(function () {
         it('has entries present after loadFeed', function (done) {
             var result = false;
             var $articles = $('.feed').find('article');
-            for(var i = 0, len = $articles.length; i < len; i++){
-                if($articles.hasClass('entry')){
+            for (var i = 0, len = $articles.length; i < len; i++) {
+                if ($articles.hasClass('entry')) {
                     result = true;
                     break;
                 }
@@ -54,9 +54,26 @@ $(function () {
         });
     });
 
-//    describe('New Feed Selection', function() {
-//        it('changes the visible content', function () {
-//            //TODO
-//        });
-//    });
+    describe('New Feed Selection', function (done) {
+        var articlesOriginal = $('.feed').find('article');
+        var articlesNew = $('.feed').find('article');
+        beforeEach(function (done) {
+            loadFeed(0);
+            setTimeout(done, 2000);
+        })
+        it('successfully load initial feed for comparison', function (done) {
+            articlesOriginal = $('.feed').find('article');
+            expect(articlesOriginal).toBeDefined();
+            loadFeed(1);
+            setTimeout(done, 2000);
+        });
+        it('new feed actually changes the old feed', function (done) {
+            articlesNew = $('.feed').find('article');
+            expect(articlesNew).toBeDefined();
+            console.log(articlesOriginal);
+            console.log(articlesNew);
+            expect(articlesNew === articlesOriginal).toBe(false);
+            done();
+        });
+    });
 });
