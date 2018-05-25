@@ -39,9 +39,7 @@ $(function () {
 
     describe('Initial Entries', function () {
         beforeEach(function (done) {
-            loadFeed(0);
-            // waits two seconds to allow api time to act
-            setTimeout(done, 2000);
+            loadFeed(0, done);
         });
         it('has entries present after loadFeed', function (done) {
             // search for any articles with the length class inside of the .feed element
@@ -58,20 +56,18 @@ $(function () {
         });
     });
 
-    describe('New Feed Selection', function (done) {
+    describe('New Feed Selection', function () {
         // Load articles, save them under articlesOriginal. Then load a different feed,
         // save it to articlesNew and compare the two. They should not match.
         var articlesOriginal = '1';
         var articlesNew = '2';
         beforeEach(function (done) {
-            loadFeed(0);
-            setTimeout(done, 2000);
+            loadFeed(0, done);
         });
         it('successfully load initial feed for comparison', function (done) {
             articlesOriginal = $('.feed').find('article');
             expect(articlesOriginal).toBeDefined();
-            loadFeed(1);
-            setTimeout(done, 2000);
+            loadFeed(1, done);
         });
         it('new feed actually changes the old feed', function (done) {
             articlesNew = $('.feed').find('article');
@@ -79,6 +75,5 @@ $(function () {
             expect(articlesNew === articlesOriginal).toBe(false);
             done();
         });
-        done();
     });
 });
